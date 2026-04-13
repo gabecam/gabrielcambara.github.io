@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel A. Cambara — Portfolio</title>
+<link href="./Gabriel A. Cambara — Portfolio_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #152236;
+    --navy-light: #1e3250;
+    --gold: #C9A84C;
+    --gold-light: #e8c96a;
+    --cream: #F5F0E8;
+    --gray: #8A96A4;
+    --text: #E8ECF0;
+    --text-dim: #9AAAB8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(13, 27, 42, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(201, 168, 76, 0.08);
+  }
+
+  .hero-grid-line:nth-child(1) { left: 20%; }
+  .hero-grid-line:nth-child(2) { left: 40%; }
+  .hero-grid-line:nth-child(3) { left: 60%; }
+  .hero-grid-line:nth-child(4) { left: 80%; }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.25s forwards;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    max-width: 520px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.55s forwards;
+  }
+
+  .stat-item { border-left: 2px solid var(--gold); padding-left: 1rem; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid rgba(138, 150, 164, 0.3);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    animation: expandLine 1.5s 1.2s ease forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(201, 168, 76, 0.2);
+    max-width: 80px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy-mid); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-dim);
+    margin-bottom: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .about-text p strong { color: var(--cream); font-weight: 500; }
+
+  .about-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .fact-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .fact-key {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .fact-val {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--navy); }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    transition: background 0.2s;
+  }
+
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -3rem;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: transparent;
+    transition: background 0.2s;
+  }
+
+  .exp-item:hover::before { background: var(--gold); }
+
+  .exp-meta { padding-top: 0.25rem; }
+
+  .exp-dates {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-company {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.7rem;
+    top: 0.05em;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--navy-mid); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    background: rgba(201, 168, 76, 0.1);
+  }
+
+  .project-card {
+    background: var(--navy-mid);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .project-card:hover { background: var(--navy-light); }
+  .project-card:hover::after { transform: scaleX(1); }
+
+  .project-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .project-highlight {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  /* ── LEADERSHIP ── */
+  #leadership { background: var(--navy); }
+
+  .leadership-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .lead-card {
+    border: 1px solid rgba(201, 168, 76, 0.15);
+    padding: 2rem;
+    border-radius: 2px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .lead-card:hover { border-color: rgba(201, 168, 76, 0.4); }
+
+  .lead-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  .lead-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.25rem;
+  }
+
+  .lead-org {
+    font-size: 0.78rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .lead-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .lead-bullets li {
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    padding-left: 0.9rem;
+    position: relative;
+    line-height: 1.55;
+  }
+
+  .lead-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ── SITE VISITS ── */
+  #visits { background: var(--navy-mid); }
+
+  .visit-list { display: flex; flex-direction: column; gap: 3rem; }
+
+  .visit-item { display: grid; grid-template-columns: 180px 1fr; gap: 3rem; }
+
+  .visit-org {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    padding-top: 0.2rem;
+    line-height: 1.3;
+  }
+
+  .visit-body p {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 0.8rem;
+  }
+
+  .visit-body p:last-child { margin-bottom: 0; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .skill-block {
+    background: var(--navy);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .skill-block:hover { background: var(--navy-mid); }
+
+  .skill-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .skill-items {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(201, 168, 76, 0.15);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.3rem;
+  }
+
+  .footer-contact a {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes expandLine {
+    to { transform: scaleX(1); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid,
+    .exp-item,
+    .leadership-grid,
+    .visit-item { grid-template-columns: 1fr; gap: 1rem; }
+    .projects-grid,
+    .skills-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-contact { align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#hero" class="nav-logo">G.A.C.</a>
+  <ul class="nav-links">
+    <li><a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#about">About</a></li>
+    <li><a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#experience">Experience</a></li>
+    <li><a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#projects">Projects</a></li>
+    <li><a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#leadership">Leadership</a></li>
+    <li><a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#visits">Site Visits</a></li>
+    <li><a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-line"></div>
+  <div class="hero-grid-line"></div>
+  <div class="hero-grid-line"></div>
+  <div class="hero-grid-line"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Field Professional Practicum — Portfolio 2025/26</p>
+    <h1 class="hero-name">Gabriel<br><em>Cambara</em></h1>
+    <p class="hero-tagline">Finance undergraduate at Northeastern University targeting investment banking. Building institutional-grade deal experience from day one.</p>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">3.93</div>
+        <div class="stat-label">GPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">750+</div>
+        <div class="stat-label">Banker Contacts</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Finance Roles</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">SIE</div>
+        <div class="stat-label">Certified</div>
+      </div>
+    </div>
+
+    <div class="hero-cta">
+      <a href="file:///Users/gabecam/Downloads/gabriel_cambara_portfolio_1.html#experience" class="btn btn-primary">View My Work</a>
+      <a href="mailto:Gabecambara@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <p class="section-label reveal">About</p>
+    <h2 class="section-title reveal">The case for<br><em style="font-style:italic; color:var(--gold)">hiring early.</em></h2>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am a freshman at Northeastern University (Class of 2029) studying finance with a <strong>3.93 GPA</strong>. I am transferring from the Oakland campus to Boston, where I am building toward a summer 2028 investment banking internship — with <strong>Moelis &amp; Company's Boston Tech Group</strong> as my primary target.</p>
+        <p>Most freshmen are still figuring out what a DCF is. I have built them for live deal evaluations, presented acquisition theses to search fund investors, and modeled oilfield cash flows for a PE firm. This portfolio documents that work.</p>
+        <p>I hold the <strong>SIE</strong> and am Co-President of the Northeastern PEVC Club (Oakland chapter). I speak English and Spanish natively, and I won first place at the Boston University Hackathon.</p>
+      </div>
+
+      <div class="about-facts reveal">
+        <div class="fact-row">
+          <span class="fact-key">University</span>
+          <span class="fact-val">Northeastern University</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">Degree</span>
+          <span class="fact-val">BS Finance, Class of 2029</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">GPA</span>
+          <span class="fact-val">3.93 / 4.00 — Dean's List</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">Campus</span>
+          <span class="fact-val">Oakland → Boston</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">Target Role</span>
+          <span class="fact-val">IB Summer 2028 — Moelis Boston Tech</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">Certification</span>
+          <span class="fact-val">Securities Industry Essentials (SIE)</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">Languages</span>
+          <span class="fact-val">English, Spanish (native)</span>
+        </div>
+        <div class="fact-row">
+          <span class="fact-key">Honors</span>
+          <span class="fact-val">Dean's List, BU Hackathon 1st, Seal of Biliteracy</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label reveal">Experience</p>
+    <h2 class="section-title reveal">Real deals,<br><em style="font-style:italic; color:var(--gold)">real capital.</em></h2>
+
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-dates">Feb 2026 — Present</div>
+          <div class="exp-company">True Purpose Capital</div>
+        </div>
+        <div>
+          <div class="exp-role">Search Fund Analyst</div>
+          <ul class="exp-bullets">
+            <li>Sourced and evaluated 50+ founder-owned businesses with $1M–$3M in revenue across B2B compliance sectors.</li>
+            <li>Analyzed financials, EBITDA margins, and growth metrics to assess sector acquisition potential.</li>
+            <li>Conducted 15+ industry and market analyses to identify fragmented business acquisition opportunities.</li>
+            <li>Maintained a pipeline database of 100+ businesses with ownership, financial, and operational insights.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-dates">Oct 2025 — Jan 2026</div>
+          <div class="exp-company">Tigbourne Capital</div>
+        </div>
+        <div>
+          <div class="exp-role">Private Equity Fall Analyst</div>
+          <ul class="exp-bullets">
+            <li>Analyzed 10+ acquisition targets to support valuation research for $50M+ acquisition deals.</li>
+            <li>Partnered with associates to identify $5M+ in EBITDA improvements through cost and margin analysis.</li>
+            <li>Built 5+ valuation models and summarized 20+ key insights for internal portfolio investment review.</li>
+            <li>Modeled multiple oilfield production and cash flow scenarios for $20M+ assets to optimize returns.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <div class="exp-dates">Jun — Aug 2025</div>
+          <div class="exp-company">Local Crafts</div>
+        </div>
+        <div>
+          <div class="exp-role">Business Analyst Intern</div>
+          <ul class="exp-bullets">
+            <li>Analyzed integrated three-statement financials for $150M+ revenue streams to identify key performance drivers.</li>
+            <li>Conducted variance and ratio analysis to assess profitability and identify 5% cost efficiency improvements.</li>
+            <li>Developed interactive Power BI dashboards to track 20+ KPIs and overall financial performance.</li>
+            <li>Delivered reports to leadership supporting $50M+ capital allocation and growth strategy decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label reveal">Selected Work</p>
+    <h2 class="section-title reveal">Projects that<br><em style="font-style:italic; color:var(--gold)">show the work.</em></h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-tag">Case Competition — Valuation</div>
+        <div class="project-title">Point72 Case Competition — GitLab</div>
+        <p class="project-desc">Built a full DCF and financial model suite for GitLab supporting an investment thesis in the Point72 case competition. Conducted industry and company research on growth drivers, margins, and market trends; prepared sensitivity and scenario analysis to evaluate upside and downside outcomes; presented key findings to the team for final recommendation.</p>
+        <span class="project-highlight">DCF · Comps · Scenario Analysis</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tag">Pitch Deck — Corporate Finance</div>
+        <div class="project-title">Lulu Fitness — Lululemon Vertical Expansion Pitch</div>
+        <p class="project-desc">Developed a full investment pitch proposing a Lululemon-branded fitness studio network, benchmarked against Life Time Holdings as the primary comparable. Produced multiple deck iterations with unit economics, Mirror acquisition lessons, and spoken Q&amp;A defenses anticipating investor pushback on brand extension risk.</p>
+        <span class="project-highlight">Unit Economics · Comps · Pitch Defense</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tag">Financial Modeling — SaaS</div>
+        <div class="project-title">Alera Senior Living — VC Pitch &amp; Financial Model</div>
+        <p class="project-desc">Built a five-year P&amp;L with an SDR-led revenue model and detailed OpEx planning for a healthcare SaaS platform targeting senior living facilities. Conducted a $1.94B TAM analysis covering U.S. and international markets, accompanied by a pitch narrative targeting early-stage institutional investors.</p>
+        <span class="project-highlight">5-Year P&amp;L · TAM Analysis · VC Pitch</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tag">Acquisition Analysis — M&amp;A</div>
+        <div class="project-title">Novo Nordisk / Hims &amp; Hers — M&amp;A Stress Test</div>
+        <p class="project-desc">Performed a due diligence stress test on a hypothetical acquisition scenario, evaluating integration risk, pricing power, and synergy realization across distribution, R&amp;D, and brand channels.</p>
+        <span class="project-highlight">M&amp;A · Due Diligence · Synergy Analysis</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tag">Infrastructure — IB Recruiting</div>
+        <div class="project-title">750-Contact IB Outreach System</div>
+        <p class="project-desc">Designed and deployed a structured outreach system targeting 750 bulge-bracket and elite boutique bankers from the Northeastern alumni database. Organized contacts in color-coded waves of 100, cross-referenced with PEVC Boston membership, and generated personalized email copy for each tier — building a scalable pipeline for 2028 internship recruiting.</p>
+        <span class="project-highlight">750 Contacts · Personalized Outreach · Pipeline</span>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-tag">Consulting — ServiceNow</div>
+        <div class="project-title">Questex — ServiceNow Process Improvement</div>
+        <p class="project-desc">Completed an applied consulting engagement analyzing exhibitor late fees and cost transparency workflows for Questex, delivering process improvement recommendations aligned with ServiceNow platform capabilities. Worked in a team of three with a live client stakeholder.</p>
+        <span class="project-highlight">Process Design · ServiceNow · Live Client</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="section-inner">
+    <p class="section-label reveal">Leadership</p>
+    <h2 class="section-title reveal">Running the room<br><em style="font-style:italic; color:var(--gold)">as a freshman.</em></h2>
+
+    <div class="leadership-grid">
+
+      <div class="lead-card reveal">
+        <div class="lead-role">Co-President</div>
+        <div class="lead-org">Northeastern PEVC Club — Oakland Chapter &nbsp;·&nbsp; 2025–2026</div>
+        <ul class="lead-bullets">
+          <li>Managed operational strategy to support the launch of PEVC Oakland in alignment with Boston chapter leadership.</li>
+          <li>Coordinated investment case competitions to enhance member proficiency in valuation and deal analysis.</li>
+          <li>Streamlined event logistics to optimize execution of finance-focused programming and key initiatives.</li>
+          <li>Built professional relationships to expand networking access and internship pipelines in VC/PE.</li>
+        </ul>
+      </div>
+
+      <div class="lead-card reveal">
+        <div class="lead-role">Member</div>
+        <div class="lead-org">Northeastern PEVC Club — Boston Chapter &nbsp;·&nbsp; 2026</div>
+        <ul class="lead-bullets">
+          <li>Actively engaging with the Boston chapter following campus transfer, with interest in contributing to the research team.</li>
+          <li>Leveraging deal experience from Oakland chapter leadership and professional roles to add value to club initiatives.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SITE VISITS -->
+<section id="visits">
+  <div class="section-inner">
+    <p class="section-label reveal">Site Visit Reflections</p>
+    <h2 class="section-title reveal">What the room<br><em style="font-style:italic; color:var(--gold)">actually teaches you.</em></h2>
+
+    <div class="visit-list">
+
+      <div class="visit-item reveal">
+        <div class="visit-org">Morgan Stanley</div>
+        <div class="visit-body">
+          <p>Visiting Morgan Stanley offered an unusually direct window into what it actually means to work in institutional finance — beyond the textbook version. What struck me most was the emphasis on client relationship management as a genuine skill in its own right, separate from and equal to technical ability. The professionals were clear that models and pitch materials are table stakes; what differentiates bankers over a career is judgment, communication under pressure, and the ability to build lasting trust with clients.</p>
+          <p>The visit reinforced the value of specificity in my own recruiting. Candidates who demonstrate genuine knowledge of a group's deal flow — not just the firm's brand — stand out in a way generic applications cannot replicate. This directly shaped how I structure my Moelis outreach, leading with specific transaction knowledge rather than broad interest statements.</p>
+          <p>I came away with greater conviction about pursuing banking. The professionals were honest about the tradeoffs and it still felt like the right fit.</p>
+        </div>
+      </div>
+
+      <div class="visit-item reveal">
+        <div class="visit-org">SVEM — Silicon Valley Elite Manufacturing</div>
+        <div class="visit-body">
+          <p>The SVEM visit was a meaningful counterpoint to Morgan Stanley. Where the Morgan Stanley conversation centered on established institutional processes, SVEM illustrated how capital deployment works at the frontier — in markets where information is thin, relationships carry outsized weight, and the conventional deal-sourcing playbook has to be rebuilt from scratch.</p>
+          <p>What I found most interesting was how SVEM identifies opportunities larger funds overlook due to scale constraints or geographic unfamiliarity — a dynamic I recognized from my True Purpose Capital work, searching for defensible niches in fragmented industries.</p>
+          <p>This visit sharpened my appreciation for thesis-driven investing. The SVEM team was not reacting to deal flow; they were generating it by holding strong sector convictions and building relationships ahead of the capital need — a posture I am applying in my own recruiting, cultivating banker relationships 18 months before I need an offer.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label reveal">Skills</p>
+    <h2 class="section-title reveal">The toolkit.</h2>
+
+    <div class="skills-grid reveal">
+      <div class="skill-block">
+        <div class="skill-cat">Financial Modeling</div>
+        <div class="skill-items">DCF, LBO, Trading Comps, Precedent Transactions, Sensitivity Analysis, Capital Budgeting, NPV / IRR, MACRS Depreciation</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Programming</div>
+        <div class="skill-items">Python, Java, JavaScript, MySQL, GitLab, GitHub</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Tools &amp; Platforms</div>
+        <div class="skill-items">Excel (Advanced), Power BI, PowerPoint, ServiceNow (Certification in Progress)</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Certifications</div>
+        <div class="skill-items">Securities Industry Essentials (SIE) — Passed<br>ServiceNow CSA — In Progress</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-items">English (Fluent)<br>Spanish (Native — Seal of Biliteracy)</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-cat">Interests</div>
+        <div class="skill-items">Soccer (Varsity Captain), Basketball, Stock Trading, Cooking, Competitive Programming, Hiking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Gabriel A. Cambara</div>
+  <div class="footer-contact">
+    <a href="mailto:Gabecambara@gmail.com">Gabecambara@gmail.com</a>
+    <a href="tel:7813928823">781-392-8823</a>
+    <a href="https://linkedin.com/in/gabriel-cambara" target="_blank">linkedin.com/in/gabriel-cambara</a>
+    <span style="font-size:0.72rem; color:var(--text-dim); margin-top:0.3rem;">Northeastern University · Class of 2029</span>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for scroll reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+
+
+</body></html>
